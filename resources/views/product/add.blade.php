@@ -1,63 +1,9 @@
 @extends('app')
 
 @section('content')
-{{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
-
-{{-- <form action="{{ url('/product') }}" method="POST">
-    @csrf
-    <div class="mb-3 mt-3 mx-3">
-      <label for="exampleInputEmail1" class="form-label">Nama Produk</label>
-      <input type="text" class="form-control @error('product_name') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" name="product_name">
-      <div id="emailHelp" class="form-text">Nama produk tidak boleh lebih dari 255</div>
-      @error('product_name')
-      <div class="invalid-feedback">
-        Nama tidak boleh kosong
-      </div>
-      @enderror
-    </div>
-    <div class="mb-3 mx-3">
-      <label for="exampleInputPassword1" class="form-label">Deskripsi</label>
-      <textarea class="form-control @error('product_description') is-invalid @enderror" name="product_description" id="" cols="30" rows="5"></textarea>
-      @error('product_description')
-      <div class="invalid-feedback">
-        Deskripsi tidak boleh kosong
-      </div>
-      @enderror
-    </div>
-    <div class="mb-3 mt-3 mx-3">
-        <label for="exampleInputPassword1" class="form-label">Harga</label>
-        <textarea class="form-control @error('product_price') is-invalid @enderror" name="product_price" id="" cols="30" rows="1"></textarea>
-        @error('product_price')
-        <div class="invalid-feedback">
-            Harga tidak boleh kosong
-          </div>
-          @enderror
-      </div>
-    <select class="form-select mx-3 @error('category_id') is-invalid @enderror" aria-label="Default select example" name="category_id">
-        <option selected>Pilih Kategori</option>
-        @foreach ($categories as $item)
-            <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->name }}</option>
-        @endforeach
-      </select>
-      @error('category_id')
-      <div class="invalid-feedback">
-        Pilih salah satu kategori
-      </div>
-      @enderror
-    <button type="submit" class="btn btn-primary mt-3 mx-3">Tambah</button>
-  </form> --}}
-
   <div class="justify-content-center d-flex mt-4" style="width: 100%">
     <div class="card p-3">
-      <form action="{{ url('/product') }}" method="POST">
+      <form action="{{ url('/product') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <table style="width: 600px">
           <tbody>
@@ -121,6 +67,17 @@
                     Pilih salah satu kategori
                   </div>
                   @enderror
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="image" class="form-label">Tambahkan Gambar</label>
+              </td>
+              <td>
+                <input type="file" class="form-control" id="image" name="image">
+                @error('image')
+                  <div id="avatarHelp" class="form-text">{{ $message }}</div>
+                @enderror
               </td>
             </tr>
           </tbody>

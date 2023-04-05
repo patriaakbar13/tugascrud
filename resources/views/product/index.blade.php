@@ -12,6 +12,7 @@
                 <div class="card-title">
                     {{ $item->name }} ( Rp {{ $item->price }} )
                 </div>
+                <img src="{{ asset('storage/'.$item->image) }}" alt="" class="img-fluid" style="width: 200px;">
                 <h6 class="card-subtitle mb-2 text-muted">{{ $item->category->name }}</h6>
                 <div class="class">{{ $item->description }}</div>
                 <a href="/product/{{ $item->id }}/edit">
@@ -25,5 +26,7 @@
     </div>
     @endforeach
 </div>
-
+    @guest
+        <p>Silakan Anda login terlebih dahulu</p>
+    @endguest
 @endsection 

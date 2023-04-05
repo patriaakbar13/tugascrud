@@ -59,7 +59,7 @@
 
   <div class="justify-content-center d-flex mt-3" style="width: 100%">
     <div class="card p-3">
-      <form action="/product/{{ $product->id }}" method="POST">
+      <form action="/product/{{ $product->id }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <table style="width: 500px">
@@ -126,6 +126,17 @@
                     Pilih salah satu kategori
                   </div>
                   @enderror
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="image" class="form-label">Tambahkan Gambar</label>
+              </td>
+              <td>
+                <input type="file" class="form-control" id="image" name="image">
+                @error('image')
+                  <div id="avatarHelp" class="form-text">{{ $message }}</div>
+                @enderror
               </td>
             </tr>
           </tbody>
